@@ -21,7 +21,7 @@ void *recv_other(void *arg)
             perror("recv error");
             return NULL;
         }
-        printf("%s\n", buf);
+        printf("receive: %s\n", buf);
     }
 }
 
@@ -55,7 +55,7 @@ int main(int argc, char **argv)
 
     char buf[255] = {};
     char name[255] = {};
-    printf("Set your nickname：");
+    printf("Set your nickname: ");
     scanf("%s", name);
     ret = send(sockfd, name, strlen(name), 0);
     if (ret == -1)
@@ -66,7 +66,6 @@ int main(int argc, char **argv)
 
     pthread_t tid;
     ret = pthread_create(&tid, NULL, recv_other, NULL);
-
     if (ret == -1)
     {
         perror("pthread create failed");
