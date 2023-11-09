@@ -6,6 +6,7 @@
 #include <netinet/in.h>
 #include <pthread.h>
 #include <string.h>
+#include <unistd.h>
 
 typedef struct sockaddr *sockaddrp;
 int sockfd;
