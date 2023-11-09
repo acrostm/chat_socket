@@ -76,7 +76,7 @@ int main(int argc, char **argv)
 
     while (1)
     {
-        if (!receivedMessage)
+        if (receivedMessage)
         {
             printf("< ");
         }
