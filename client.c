@@ -9,7 +9,6 @@
 
 typedef struct sockaddr *sockaddrp;
 int sockfd;
-int receivedMessage = 0;
 
 void *recv_other(void *arg)
 {
@@ -22,8 +21,13 @@ void *recv_other(void *arg)
             perror("recv error");
             return NULL;
         }
+
+        // 使用 ANSI escape codes 清除当前行
+        printf("\033[2K"); 
+        printf("\033[1G"); // 光标回到行首
         printf("%s\n", buf);
-        receivedMessage = 1; // 设置标志表示收到了信息
+        printf("< "); // 重新打印 <
+        fflush(stdout); // 立即刷新输出缓冲区
     }
 }
 
@@ -76,14 +80,8 @@ int main(int argc, char **argv)
 
     while (1)
     {
-        if (receivedMessage)
-        {
-            printf("< ");
-            fflush(stdout); // 立即刷新输出缓冲区
-            receivedMessage = 0; // 重置标志
-        }
-        fgets(buf, sizeof(buf), stdin); // 使用fgets来读取整行，而不是scanf
-        buf[strcspn(buf, "\n")] = '\0'; // 去掉换行符
+        printf("< ");
+        scanf("%s", buf);
         int ret = send(sockfd, buf, strlen(buf), 0);
         if (ret == -1)
         {
