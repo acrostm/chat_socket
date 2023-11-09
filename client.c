@@ -21,7 +21,7 @@ void *recv_other(void *arg)
             perror("recv error");
             return NULL;
         }
-        printf("> %s\n", buf);
+        printf("%s\n", buf);
     }
 }
 
@@ -74,7 +74,7 @@ int main(int argc, char **argv)
 
     while (1)
     {
-        if(tid != 0)
+        if(tid == 0)
         {
            printf("< ");
 
