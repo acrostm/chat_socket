@@ -21,7 +21,7 @@ void *recv_other(void *arg)
             perror("recv error");
             return NULL;
         }
-        printf("receive: %s\n", buf);
+        printf("> %s\n", buf);
     }
 }
 
@@ -74,7 +74,11 @@ int main(int argc, char **argv)
 
     while (1)
     {
-        printf("input> ");
+        if(tid != 0)
+        {
+           printf("< ");
+
+        }
         scanf("%s", buf);
         int ret = send(sockfd, buf, strlen(buf), 0);
         if (ret == -1)
@@ -83,7 +87,7 @@ int main(int argc, char **argv)
             exit(EXIT_FAILURE);
         }
 
-        if (0 == strcmp("quit", buf))
+        if (strcmp("quit", buf) == 0)
         {
             printf("[%s] 已经退出了聊天室\n", name);
             exit(EXIT_SUCCESS);
