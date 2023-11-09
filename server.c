@@ -35,7 +35,7 @@ void *broadcast(void *indexp)
         bzero(buf_rcv, sizeof(buf_rcv));
         recv(confd[index], buf_rcv, sizeof(buf_rcv), 0);
 
-        if (strcmp("quit", buf_rcv == 0))
+        if (strcmp("quit", buf_rcv) == 0)
         {
             sprintf(buf_snd, "[%s]已经退出聊天室", name);
             for (int i = 0; i <= count; i++)
