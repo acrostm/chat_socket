@@ -51,7 +51,8 @@ void *broadcast(void *indexp)
             pthread_exit(0);
         }
 
-        sprintf(buf_snd, "%s:%s", name, buf_rcv);
+        // sprintf(buf_snd, "%s:%s", name, buf_rcv);
+        snprintf(buf_snd, sizeof(buf_snd), "%s:%s", name, buf_rcv);
         printf("%s\n", buf_snd);
         for (int i = 0; i <= count; i++)
         {
