@@ -9,6 +9,7 @@
 
 typedef struct sockaddr *sockaddrp;
 int sockfd;
+int receivedMessage = 0;
 
 void *recv_other(void *arg)
 {
@@ -22,6 +23,7 @@ void *recv_other(void *arg)
             return NULL;
         }
         printf("%s\n", buf);
+        receivedMessage = 1; // 设置标志表示收到了信息
     }
 }
 
@@ -43,7 +45,7 @@ int main(int argc, char **argv)
     struct sockaddr_in addr = {AF_INET};
     addr.sin_addr.s_addr = inet_addr(argv[1]);
     addr.sin_port = htons(atoi(argv[2]));
-    
+
     socklen_t addr_len = sizeof(addr);
 
     int ret = connect(sockfd, (sockaddrp)&addr, addr_len);
@@ -74,11 +76,11 @@ int main(int argc, char **argv)
 
     while (1)
     {
-        if(tid == 0)
+        if (!receivedMessage)
         {
-           printf("< ");
-
+            printf("< ");
         }
+        receivedMessage = 0; // 重置标志
         scanf("%s", buf);
         int ret = send(sockfd, buf, strlen(buf), 0);
         if (ret == -1)
