@@ -76,9 +76,10 @@ int main(int argc, char **argv)
 
     while (1)
     {
-        if (receivedMessage)
+        if (!receivedMessage)
         {
             printf("< ");
+            fflush(stdout); // 立即刷新输出缓冲区
         }
         receivedMessage = 0; // 重置标志
         scanf("%s", buf);
