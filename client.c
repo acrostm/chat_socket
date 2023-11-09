@@ -65,7 +65,7 @@ int main(int argc, char **argv)
     printf("Set your nickname: ");
     scanf("%s", name);
     printf("-----------------------------------------\n");
-    printf("|||Welcome to chat room [%d]|||\n |||Type after \"< \" to seng message||| |||Type \"quit\" to leave room|||\n", getpid());
+    printf("|||Welcome to chat room [%d]|||\n|||Type after \"< \" to seng message|||\n|||Type \"quit\" to leave room|||\n", getpid());
     printf("-----------------------------------------\n");
     ret = send(sockfd, name, strlen(name), 0);
     if (ret == -1)
