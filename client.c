@@ -76,12 +76,12 @@ int main(int argc, char **argv)
 
     while (1)
     {
-        if (!receivedMessage)
+        if (receivedMessage)
         {
             printf("< ");
             fflush(stdout); // 立即刷新输出缓冲区
+            receivedMessage = 0; // 重置标志
         }
-        receivedMessage = 0; // 重置标志
         fgets(buf, sizeof(buf), stdin); // 使用fgets来读取整行，而不是scanf
         buf[strcspn(buf, "\n")] = '\0'; // 去掉换行符
         int ret = send(sockfd, buf, strlen(buf), 0);
