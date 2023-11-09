@@ -35,9 +35,9 @@ void *broadcast(void *indexp)
         bzero(buf_rcv, sizeof(buf_rcv));
         recv(confd[index], buf_rcv, sizeof(buf_rcv), 0);
 
-        if (0 == strcmp("quit", buf_rcv))
+        if (strcmp("quit", buf_rcv == 0))
         {
-            sprintf(buf_snd, "%s已经退出悟空聊天室", name);
+            sprintf(buf_snd, "[%s]已经退出聊天室", name);
             for (int i = 0; i <= count; i++)
             {
                 if (i == index || 0 == confd[i])
@@ -52,7 +52,7 @@ void *broadcast(void *indexp)
         }
 
         // sprintf(buf_snd, "%s:%s", name, buf_rcv);
-        snprintf(buf_snd, sizeof(buf_snd), "%s:%s", name, buf_rcv);
+        snprintf(buf_snd, sizeof(buf_snd), "%s> %s", name, buf_rcv);
         printf("%s\n", buf_snd);
         for (int i = 0; i <= count; i++)
         {

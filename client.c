@@ -55,7 +55,7 @@ int main(int argc, char **argv)
 
     char buf[255] = {};
     char name[255] = {};
-    printf("请输入您的昵称：");
+    printf("Set your nickname：");
     scanf("%s", name);
     ret = send(sockfd, name, strlen(name), 0);
     if (ret == -1)
@@ -75,6 +75,7 @@ int main(int argc, char **argv)
 
     while (1)
     {
+        printf("input> ");
         scanf("%s", buf);
         int ret = send(sockfd, buf, strlen(buf), 0);
         if (ret == -1)
@@ -85,7 +86,7 @@ int main(int argc, char **argv)
 
         if (0 == strcmp("quit", buf))
         {
-            printf("%s,您已经退出了聊天室\n", name);
+            printf("[%s] 已经退出了聊天室\n", name);
             exit(EXIT_SUCCESS);
         }
     }
