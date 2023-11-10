@@ -28,7 +28,7 @@ void *recv_other(void *arg)
 
         // 使用 ANSI escape codes 清除当前行
         printf("\033[2K"); 
-        // printf("\033[1G"); // 光标回到行首
+        printf("\033[1G"); // 光标回到行首
         printf("%s\n", buf);
         printf("< "); // 重新打印 <
         fflush(stdout); // 立即刷新输出缓冲区
@@ -98,7 +98,7 @@ int main(int argc, char **argv)
 
         if (strcmp("quit", buf) == 0)
         {
-            printf("[%s] 已经退出了聊天室\n", name);
+            printf("[%s] has left the chatroom!\n", name);
             exit(EXIT_SUCCESS);
         }
     }
