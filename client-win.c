@@ -9,6 +9,7 @@
 #define FALSE 0
 
 SOCKET sockfd;
+HANDLE hThread;
 
 void *recv_other(void *arg)
 {
@@ -109,9 +110,6 @@ int main(int argc, char **argv)
         if (strcmp("quit", buf) == 0)
         {
             printf("[%s] has left the chat room\n", name);
-
-            // 设置停止标志
-            stop_thread = 1;
 
 
             // 关闭线程句柄

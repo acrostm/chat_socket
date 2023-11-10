@@ -27,7 +27,7 @@ void *recv_other(void *arg)
         }
 
         // 使用 ANSI escape codes 清除当前行
-        // printf("\033[2K"); 
+        printf("\033[2K"); 
         // printf("\033[1G"); // 光标回到行首
         printf("%s\n", buf);
         printf("< "); // 重新打印 <
