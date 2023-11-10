@@ -11,10 +11,13 @@
 typedef struct sockaddr *sockaddrp;
 int sockfd;
 
+#define TRUE 1
+#define FALSE 0
+
 void *recv_other(void *arg)
 {
     char buf[255] = {};
-    while (1)
+    while (TRUE)
     {
         int ret = recv(sockfd, buf, sizeof(buf), 0);
         if (ret == -1)
@@ -24,8 +27,8 @@ void *recv_other(void *arg)
         }
 
         // 使用 ANSI escape codes 清除当前行
-        printf("\033[2K"); 
-        printf("\033[1G"); // 光标回到行首
+        // printf("\033[2K"); 
+        // printf("\033[1G"); // 光标回到行首
         printf("%s\n", buf);
         printf("< "); // 重新打印 <
         fflush(stdout); // 立即刷新输出缓冲区
@@ -82,7 +85,7 @@ int main(int argc, char **argv)
         exit(EXIT_FAILURE);
     }
 
-    while (1)
+    while (TRUE)
     {
         printf("< ");
         scanf("%s", buf);
