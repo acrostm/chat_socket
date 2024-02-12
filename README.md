@@ -1,2 +1,3 @@
 # chat_socket
- Chat Room Project using C, with POSIX api
+ Communication on TCP Project using C/C++, with POSIX socket apis...
+ Supporting files transfer or message exchange between clients and server.
